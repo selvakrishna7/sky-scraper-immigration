@@ -1,0 +1,261 @@
+.service-detail-page {
+    min-height: 100vh;
+    background: #fff;
+    color: #172033;
+  }
+  
+  .service-detail-hero {
+    min-height: 660px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #101a2d;
+    color: #fff;
+  }
+  
+  .service-detail-background,
+  .service-detail-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .service-detail-background {
+    object-fit: cover;
+  }
+  
+  .service-detail-overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(8, 17, 34, 0.96) 0%,
+      rgba(8, 17, 34, 0.82) 48%,
+      rgba(8, 17, 34, 0.25) 100%
+    );
+  }
+  
+  .service-detail-container {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+  
+  .service-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 64px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .service-back-link:hover {
+    color: #9fc5ff;
+  }
+  
+  .service-detail-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a9caff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  
+  .service-detail-hero h1 {
+    max-width: 800px;
+    margin: 22px 0;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -3px;
+  }
+  
+  .service-detail-subtitle {
+    max-width: 650px;
+    margin: 0 0 16px;
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.5;
+  }
+  
+  .service-detail-description {
+    max-width: 590px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  
+  .service-detail-cta,
+  .service-detail-bottom-cta a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 22px;
+    border-radius: 6px;
+    background: #fff;
+    color: #14213a;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.25s ease;
+  }
+  
+  .service-detail-cta:hover,
+  .service-detail-bottom-cta a:hover {
+    transform: translateY(-3px);
+  }
+  
+  .service-detail-information {
+    padding: 100px 0;
+  }
+  
+  .service-information-heading {
+    max-width: 700px;
+    margin-bottom: 44px;
+  }
+  
+  .service-information-heading > span,
+  .service-detail-bottom-cta > div > span {
+    color: #4169a8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  
+  .service-information-heading h2 {
+    margin: 20px 0;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -1.8px;
+  }
+  
+  .service-information-heading h2 span {
+    color: #6688bc;
+  }
+  
+  .service-information-heading > p,
+  .service-detail-bottom-cta p {
+    color: #647084;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  
+  .service-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  
+  .service-benefit-card {
+    position: relative;
+    min-height: 150px;
+    padding: 28px;
+    border: 1px solid #e4e9f0;
+    border-radius: 12px;
+    background: #fff;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  
+  .service-benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(20, 40, 75, 0.08);
+  }
+  
+  .service-benefit-card > svg {
+    color: #4169a8;
+  }
+  
+  .service-benefit-number {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: #a1aaba;
+    font-size: 13px;
+  }
+  
+  .service-benefit-card p {
+    max-width: 420px;
+    margin: 18px 0 0;
+    color: #3f4b5e;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .service-detail-bottom-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 70px;
+    padding: 42px;
+    border-radius: 14px;
+    background: #f3f6fa;
+  }
+  
+  .service-detail-bottom-cta h2 {
+    margin: 12px 0;
+    font-size: clamp(26px, 4vw, 38px);
+  }
+  
+  .service-detail-bottom-cta p {
+    max-width: 580px;
+    margin-bottom: 0;
+  }
+  
+  .service-detail-bottom-cta a {
+    flex-shrink: 0;
+    background: #172b4d;
+    color: #fff;
+  }
+  
+  .service-not-found {
+    min-height: 70vh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 20px;
+  }
+  
+  .service-not-found a {
+    color: #4169a8;
+  }
+  
+  @media (max-width: 700px) {
+    .service-detail-hero {
+      min-height: 620px;
+      padding: 50px 0;
+    }
+  
+    .service-detail-container {
+      width: min(100% - 36px, 1180px);
+    }
+  
+    .service-back-link {
+      margin-bottom: 52px;
+    }
+  
+    .service-detail-hero h1 {
+      letter-spacing: -1.5px;
+    }
+  
+    .service-detail-information {
+      padding: 70px 0;
+    }
+  
+    .service-benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .service-detail-bottom-cta {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 26px;
+    }
+  }
