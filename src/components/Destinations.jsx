@@ -1,5 +1,5 @@
-
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -30,7 +30,8 @@ const destinations = [
     code: "NO",
     flag: "🇳🇴",
     category: "STUDY · WORK · TRAVEL",
-    description: "Understand requirements relevant to your Norwegian plans.",
+    description:
+      "Understand requirements relevant to your Norwegian plans.",
     image:
       "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=900&q=85",
     alt: "Norwegian landscape beneath the northern lights",
@@ -40,7 +41,8 @@ const destinations = [
     code: "IE",
     flag: "🇮🇪",
     category: "EDUCATION · CAREER",
-    description: "Learn about relevant routes for education, employment, and visits.",
+    description:
+      "Learn about relevant routes for education, employment, and visits.",
     image:
       "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=900&q=85",
     alt: "Irish architecture and landscape",
@@ -50,7 +52,8 @@ const destinations = [
     code: "LU",
     flag: "🇱🇺",
     category: "EUROPE · CAREER",
-    description: "Explore applicable residence and work requirements.",
+    description:
+      "Explore applicable residence and work requirements.",
     image:
       "https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=900&q=85",
     alt: "European city architecture",
@@ -58,61 +61,17 @@ const destinations = [
 ];
 
 const moreCountries = [
-  {
-    name: "Austria",
-    flag: "🇦🇹",
-    code: "AT",
-  },
-  {
-    name: "Belgium",
-    flag: "🇧🇪",
-    code: "BE",
-  },
-  {
-    name: "Denmark",
-    flag: "🇩🇰",
-    code: "DK",
-  },
-  {
-    name: "France",
-    flag: "🇫🇷",
-    code: "FR",
-  },
-  {
-    name: "Germany",
-    flag: "🇩🇪",
-    code: "DE",
-  },
-  {
-    name: "Iceland",
-    flag: "🇮🇸",
-    code: "IS",
-  },
-  {
-    name: "Italy",
-    flag: "🇮🇹",
-    code: "IT",
-  },
-  {
-    name: "Malta",
-    flag: "🇲🇹",
-    code: "MT",
-  },
-  {
-    name: "Poland",
-    flag: "🇵🇱",
-    code: "PL",
-  },
-  {
-    name: "Portugal",
-    flag: "🇵🇹",
-    code: "PT",
-  },
-  {
-    name: "Switzerland",
-    flag: "🇨🇭",
-    code: "CH",
-  },
+  { name: "Austria", flag: "🇦🇹", code: "AT" },
+  { name: "Belgium", flag: "🇧🇪", code: "BE" },
+  { name: "Denmark", flag: "🇩🇰", code: "DK" },
+  { name: "France", flag: "🇫🇷", code: "FR" },
+  { name: "Germany", flag: "🇩🇪", code: "DE" },
+  { name: "Iceland", flag: "🇮🇸", code: "IS" },
+  { name: "Italy", flag: "🇮🇹", code: "IT" },
+  { name: "Malta", flag: "🇲🇹", code: "MT" },
+  { name: "Poland", flag: "🇵🇱", code: "PL" },
+  { name: "Portugal", flag: "🇵🇹", code: "PT" },
+  { name: "Switzerland", flag: "🇨🇭", code: "CH" },
 ];
 
 const highlights = [
@@ -138,12 +97,16 @@ const highlights = [
   },
 ];
 
+// Create a consistent URL slug for each country.
+const getCountrySlug = (countryName) =>
+  countryName.toLowerCase().trim().replace(/\s+/g, "-");
+
 function Destinations() {
   const [showMore, setShowMore] = useState(false);
 
-  // Close popup using the Escape key and prevent background scrolling.
+  // Close the popup with Escape and prevent background scrolling.
   useEffect(() => {
-    if (!showMore) return;
+    if (!showMore) return undefined;
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -152,8 +115,8 @@ function Destinations() {
     };
 
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
 
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -194,7 +157,7 @@ function Destinations() {
           </div>
         </header>
 
-        {/* Four featured countries + More button */}
+        {/* Featured countries */}
         <div className="destination-grid destination-main-grid">
           {destinations.map((destination, index) => (
             <article
@@ -202,10 +165,10 @@ function Destinations() {
               key={destination.code}
               style={{ "--card-index": index }}
             >
-              <a
-                href="#contact"
+              <Link
+                to={`/destinations/${getCountrySlug(destination.name)}`}
                 className="destination-image-link"
-                aria-label={`Ask about ${destination.name}`}
+                aria-label={`Explore ${destination.name} opportunities`}
               >
                 <img
                   className="destination-image"
@@ -239,7 +202,7 @@ function Destinations() {
                     <ArrowRight size={17} />
                   </span>
                 </div>
-              </a>
+              </Link>
             </article>
           ))}
 
@@ -248,7 +211,9 @@ function Destinations() {
             type="button"
             className="destination-more-card"
             onClick={() => setShowMore(true)}
-            aria-label="Explore 11 more countries"
+            aria-label={`Explore ${moreCountries.length} more countries`}
+            aria-haspopup="dialog"
+            aria-expanded={showMore}
           >
             <span className="more-card-orbit orbit-one" />
             <span className="more-card-orbit orbit-two" />
@@ -274,7 +239,7 @@ function Destinations() {
           </button>
         </div>
 
-        {/* Countries popup */}
+        {/* More countries popup */}
         {showMore && (
           <div
             className="countries-modal-overlay"
@@ -318,11 +283,11 @@ function Destinations() {
                 </button>
               </div>
 
-              {/* Country cards */}
+              {/* Clickable country cards */}
               <div className="countries-modal-grid">
                 {moreCountries.map((country) => (
-                  <a
-                    href="#contact"
+                  <Link
+                    to={`/destinations/${getCountrySlug(country.name)}`}
                     className="countries-modal-country"
                     key={country.code}
                     onClick={() => setShowMore(false)}
@@ -345,7 +310,7 @@ function Destinations() {
                       size={18}
                       className="countries-modal-arrow"
                     />
-                  </a>
+                  </Link>
                 ))}
               </div>
 
@@ -354,15 +319,6 @@ function Destinations() {
                 <span>
                   Find a destination that matches your goals.
                 </span>
-
-                {/* <button
-                  type="button"
-                  className="countries-modal-footer-close"
-                  onClick={() => setShowMore(false)}
-                >
-                  Close Window
-                  <X size={15} />
-                </button> */}
               </div>
             </div>
           </div>

@@ -634,3 +634,51 @@
 .contact-section .contact-instagram:hover .contact-icon {
   color: #d946a8;
 }
+/* ========================================
+   PRIMARY + SECONDARY PHONE ROW
+======================================== */
+
+.contact-phone-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.contact-phone-item {
+  min-width: 0;
+  gap: 10px;
+  padding: 16px 12px;
+}
+
+.contact-phone-item .contact-icon {
+  flex-shrink: 0;
+}
+
+.contact-phone-item .contact-detail-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-phone-item .contact-detail-text small {
+  display: block;
+  font-size: 11px;
+}
+
+.contact-phone-item .contact-detail-text strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+
+.contact-phone-item .contact-detail-arrow {
+  flex-shrink: 0;
+  width: 15px;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 480px) {
+  .contact-phone-row {
+    grid-template-columns: 1fr;
+  }
+}

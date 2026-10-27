@@ -10,16 +10,30 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import "./Contact.css";
 
-// EmailJS Configuration
+// ========================================
+// EMAILJS CONFIGURATION
+// ========================================
 const EMAILJS_SERVICE_ID = "service_1kcjfgc";
 const EMAILJS_TEMPLATE_ID = "template_07und24";
 const EMAILJS_PUBLIC_KEY = "jKB6LgBANt8v7BzFr";
 
-// Business Email
+// ========================================
+// BUSINESS CONTACT INFORMATION
+// ========================================
 const BUSINESS_EMAIL = "skyscraperimmigration.ind@gmail.com";
-const WHATSAPP_URL = "https://wa.me/919361100852?text=Hello%20Sky%20Scraper%20Immigration!%20I%20would%20like%20to%20know%20more%20about%20your%20visa%20services.";
 
-const INSTAGRAM_URL = "https://www.instagram.com/sky.scraper_immigrations?dlrf=dWxveDdtcHdwMjBk";
+const PRIMARY_PHONE = "+90252 82729";
+const SECONDARY_PHONE = "+919361100852"; // Replace with your actual number
+
+const WHATSAPP_URL =
+  "https://wa.me/919025282729?text=Hello%20Sky%20Scraper%20Immigration!%20I%20would%20like%20to%20know%20more%20about%20your%20visa%20services.";
+
+const INSTAGRAM_URL =
+  "https://www.instagram.com/sky.scraper_immigrations?dlrf=dWxveDdtcHdwMjBk";
+
+// ========================================
+// CONTACT COMPONENT
+// ========================================
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -34,7 +48,7 @@ export default function Contact() {
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState("");
 
-  // Update form fields
+  // Handle form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -44,16 +58,13 @@ export default function Contact() {
     }));
   };
 
-  // Send enquiry by email only
+  // Submit consultation enquiry
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (isSubmitting) return;
 
-    if (
-      EMAILJS_PUBLIC_KEY === "" ||
-      !EMAILJS_PUBLIC_KEY.trim()
-    ) {
+    if (!EMAILJS_PUBLIC_KEY.trim()) {
       setStatusType("error");
       setStatusMessage(
         "Email service is not configured yet. Please try again later."
@@ -151,18 +162,65 @@ export default function Contact() {
               />
             </a>
 
-            {/* PHONE */}
+            {/* PRIMARY AND SECONDARY PHONE - SAME LINE */}
+            <div className="contact-phone-row">
+
+              {/* PRIMARY PHONE */}
+              <a
+                href={`tel:${PRIMARY_PHONE}`}
+                className="contact-detail contact-phone-item"
+              >
+                <span className="contact-icon">
+                  <Phone size={20} />
+                </span>
+
+                <span className="contact-detail-text">
+                  <small>Primary Contact</small>
+                  <strong>+91 93611 00852</strong>
+                </span>
+
+                <ArrowUpRight
+                  className="contact-detail-arrow"
+                  size={18}
+                />
+              </a>
+
+              {/* SECONDARY PHONE */}
+              <a
+                href={`tel:${SECONDARY_PHONE}`}
+                className="contact-detail contact-phone-item"
+              >
+                <span className="contact-icon">
+                  <Phone size={20} />
+                </span>
+
+                <span className="contact-detail-text">
+                  <small>Secondary Contact</small>
+                  <strong>{SECONDARY_PHONE}</strong>
+                </span>
+
+                <ArrowUpRight
+                  className="contact-detail-arrow"
+                  size={18}
+                />
+              </a>
+
+            </div>
+
+            {/* WHATSAPP */}
             <a
-              href="tel:+919361100852"
-              className="contact-detail"
+              href={WHATSAPP_URL}
+              className="contact-detail contact-whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span className="contact-icon">
-                <Phone size={20} />
+                <FaWhatsapp size={22} />
               </span>
 
               <span className="contact-detail-text">
-                <small>Call Us</small>
-                <strong>+91 9361100852</strong>
+                <small>WhatsApp Us</small>
+                <strong>Chat with our team</strong>
               </span>
 
               <ArrowUpRight
@@ -170,49 +228,28 @@ export default function Contact() {
                 size={18}
               />
             </a>
-            {/* WHATSAPP */}
-<a
-  href={WHATSAPP_URL}
-  className="contact-detail contact-whatsapp"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <span className="contact-icon">
-    <FaWhatsapp size={22} />
-  </span>
 
-  <span className="contact-detail-text">
-    <small>WhatsApp Us</small>
-    <strong>Chat with our team</strong>
-  </span>
+            {/* INSTAGRAM */}
+            <a
+              href={INSTAGRAM_URL}
+              className="contact-detail contact-instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="contact-icon">
+                <FaInstagram size={22} />
+              </span>
 
-  <ArrowUpRight
-    className="contact-detail-arrow"
-    size={18}
-  />
-</a>
+              <span className="contact-detail-text">
+                <small>Follow Us</small>
+                <strong>Instagram</strong>
+              </span>
 
-{/* INSTAGRAM */}
-<a
-  href={INSTAGRAM_URL}
-  className="contact-detail contact-instagram"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <span className="contact-icon">
-    <FaInstagram size={22} />
-  </span>
-
-  <span className="contact-detail-text">
-    <small>Follow Us</small>
-    <strong>Instagram</strong>
-  </span>
-
-  <ArrowUpRight
-    className="contact-detail-arrow"
-    size={18}
-  />
-</a>
+              <ArrowUpRight
+                className="contact-detail-arrow"
+                size={18}
+              />
+            </a>
 
           </div>
         </div>
@@ -228,10 +265,8 @@ export default function Contact() {
             </p>
           </div>
 
-          <form
-            className="contact-form"
-            onSubmit={handleSubmit}
-          >
+          <form className="contact-form" onSubmit={handleSubmit}>
+
             {/* NAME AND EMAIL */}
             <div className="contact-form-row">
 
@@ -306,26 +341,11 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="">
-                    Select a service
-                  </option>
-
-                  <option value="Work Permit">
-                    Work Permit
-                  </option>
-
-                  <option value="Visit Visa">
-                    Visit Visa
-                  </option>
-
-                  <option value="Business Visa">
-                    Business Visa
-                  </option>
-
-                  <option value="Student Visa">
-                    Student Visa
-                  </option>
-
+                  <option value="">Select a service</option>
+                  <option value="Work Permit">Work Permit</option>
+                  <option value="Visit Visa">Visit Visa</option>
+                  <option value="Business Visa">Business Visa</option>
+                  <option value="Student Visa">Student Visa</option>
                   <option value="Permanent Residency">
                     Permanent Residency
                   </option>
@@ -346,9 +366,7 @@ export default function Contact() {
                 value={formData.destination}
                 onChange={handleChange}
               >
-                <option value="">
-                  Choose your destination
-                </option>
+                <option value="">Choose your destination</option>
                 <option value="Netherlands">Netherlands</option>
                 <option value="Norway">Norway</option>
                 <option value="Ireland">Ireland</option>
@@ -395,16 +413,14 @@ export default function Contact() {
               </div>
             )}
 
-            {/* SUBMIT */}
+            {/* SUBMIT BUTTON */}
             <button
               type="submit"
               className="contact-submit-btn"
               disabled={isSubmitting}
             >
               <span>
-                {isSubmitting
-                  ? "Sending Enquiry..."
-                  : "Send Enquiry"}
+                {isSubmitting ? "Sending Enquiry..." : "Send Enquiry"}
               </span>
 
               <Send size={18} />

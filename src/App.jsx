@@ -5,6 +5,8 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import { useEffect } from "react";
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -14,8 +16,7 @@ import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetail from "./components/ServiceDetail";
-
-import { useEffect } from "react";
+import CountryDetails from "./components/CountryDetails";
 
 import "./App.css";
 
@@ -69,8 +70,10 @@ function App() {
       <ScrollToTop />
 
       <Routes>
+        {/* Main website */}
         <Route path="/" element={<MainWebsite />} />
 
+        {/* Service detail pages */}
         <Route
           path="/services/:serviceId"
           element={
@@ -82,16 +85,33 @@ function App() {
           }
         />
 
+        {/* Individual country detail pages */}
+        <Route
+          path="/destinations/:countryName"
+          element={
+            <>
+              <Navbar />
+              <CountryDetails />
+              <Footer />
+            </>
+          }
+        />
+
+        {/* Page not found */}
         <Route
           path="*"
           element={
             <>
               <Navbar />
+
               <main className="not-found-page">
                 <h1>Page Not Found</h1>
-                <p>The page you're looking for doesn't exist.</p>
+                <p>
+                  The page you're looking for doesn't exist.
+                </p>
                 <a href="/">Back to Home</a>
               </main>
+
               <Footer />
             </>
           }
